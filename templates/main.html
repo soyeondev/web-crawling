@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Flask #2
+    </title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	get_blog_count();
+	
+});
+
+function get_blog_count(){
+	$.ajax({
+		url : 'get_blog_post',
+		type : 'POST',
+		success: function(data){
+			var Obj = JSON.parse(res);
+			var div = $("<div></div>");
+			var title = $("<p></p>").html(data.lastBuildDate.items.title);
+			
+			$(div).append(title);
+			$("#list").append(div);
+		}
+		
+	});
+	
+}
+</script>
+</head>
+<body>
+	<div id="list"></div>
+	메인입니다.
+</body>
+</html>
